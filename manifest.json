@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "CyberTab",
+  "version": "3.0.0",
+  "description": "Cyberpunk New Tab — clock, quotes, animated wallpaper, bento grid, fully customizable.",
+  "chrome_url_overrides": { "newtab": "newtab.html" },
+  "permissions": ["storage"],
+  "icons": {
+    "16":  "images/icon16.png",
+    "32":  "images/icon32.png",
+    "48":  "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["settings.html", "css/*", "js/*", "images/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

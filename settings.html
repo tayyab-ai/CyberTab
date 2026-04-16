@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberTab Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/settings.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <header class="s-header">
+    <div class="s-logo"><span class="lb">[</span>CYBER<span class="la">TAB</span><span class="lb">]</span></div>
+    <span class="s-sub">Configuration Panel</span>
+    <a class="close-btn" href="javascript:window.close()">✕</a>
+  </header>
+
+  <div class="s-layout">
+
+    <nav class="s-sidenav">
+      <button class="sni active" data-tab="wallpaper">🖼️ Wallpaper</button>
+      <button class="sni"        data-tab="identity" >👤 Identity</button>
+      <button class="sni"        data-tab="widget"   >💬 Quotes</button>
+      <button class="sni"        data-tab="links"    >🔗 Quick Links</button>
+      <button class="sni"        data-tab="nav"      >📌 Nav Links</button>
+      <button class="sni"        data-tab="display"  >🎛️ Display</button>
+      <button class="sni"        data-tab="about"    >ℹ️ About</button>
+    </nav>
+
+    <main class="s-panels">
+
+      <!-- ════ WALLPAPER ════ -->
+      <section class="sp active" id="tab-wallpaper">
+        <h2 class="pt">Wallpaper Settings</h2>
+        <p class="pd">Upload animated (<strong>MP4, GIF</strong>) or static (<strong>JPG, PNG, WEBP</strong>) wallpapers. Stored locally.</p>
+
+        <!-- Multi-wallpaper toggle -->
+        <div class="toggle-group mb16">
+          <div class="tgl-info">
+            <span class="tgl-label">Allow multiple wallpapers?</span>
+            <span class="tgl-hint">Cycles a new wallpaper each time you open a new tab</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="multi-wp-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <!-- Multi count selector (shown when toggle ON) -->
+        <div id="multi-count-wrap" class="multi-count-wrap" style="display:none;">
+          <label class="fl">How many wallpapers? (2–5)</label>
+          <div class="count-selector" id="count-selector">
+            <button class="count-btn active" data-count="2">2</button>
+            <button class="count-btn"        data-count="3">3</button>
+            <button class="count-btn"        data-count="4">4</button>
+            <button class="count-btn"        data-count="5">5</button>
+          </div>
+        </div>
+
+        <!-- Single wallpaper zone -->
+        <div id="single-wp-wrap">
+          <div class="wp-preview-wrap">
+            <div class="wp-preview" id="wp-preview">
+              <span class="wp-no-label">Default canvas animation active</span>
+            </div>
+          </div>
+          <div class="upload-zone" id="upload-zone">
+            <div class="up-icon">📂</div>
+            <p class="up-text">Drag & drop wallpaper here</p>
+            <p class="up-sub">Animated: <strong>MP4 · GIF</strong> &nbsp;|&nbsp; Static: <strong>JPG · PNG · WEBP</strong></p>
+            <button class="btn-primary" id="browse-btn">Browse File</button>
+            <input type="file" id="file-input" accept="video/mp4,.mp4,image/gif,.gif,image/jpeg,.jpg,.jpeg,image/png,.png,image/webp,.webp" style="display:none;" />
+          </div>
+          <div class="wp-status" id="wp-status"></div>
+          <div class="info-card" id="wp-info" style="display:none;">
+            <div class="irow"><span class="il">File:</span><span class="iv" id="wp-fname">—</span></div>
+            <div class="irow"><span class="il">Type:</span><span class="iv" id="wp-ftype">—</span></div>
+          </div>
+          <div class="btn-row mt12">
+            <button class="btn-danger"    id="clear-wp-btn"   style="display:none;">🗑️ Remove</button>
+            <button class="btn-secondary" id="default-wp-btn">↺ Use Default Animation</button>
+          </div>
+        </div>
+
+        <!-- Multi wallpaper slots (shown when toggle ON) -->
+        <div id="multi-wp-wrap" style="display:none;">
+          <div id="multi-slots"></div>
+          <div class="smsg" id="multi-msg"></div>
+        </div>
+      </section>
+
+      <!-- ════ IDENTITY ════ -->
+      <section class="sp" id="tab-identity">
+        <h2 class="pt">Identity</h2>
+        <p class="pd">Your name appears in the greeting. Tab title shows in the browser tab bar.</p>
+        <div class="fg">
+          <label class="fl">Your Name</label>
+          <input type="text" class="fi" id="user-name-in" placeholder="e.g. Tayyab, Dev, Coder..." maxlength="30" />
+          <span class="fh">Shown as: <em>Hello, [Name]</em></span>
+        </div>
+        <div class="fg">
+          <label class="fl">Tab Title</label>
+          <input type="text" class="fi" id="tab-title-in" placeholder="e.g. CyberTab, My HQ, NewTab..." maxlength="40" />
+          <span class="fh">This will be shown on the browser tab.</span>
+        </div>
+        <button class="btn-primary" id="save-id-btn">💾 Save Identity</button>
+        <div class="smsg" id="id-msg"></div>
+      </section>
+
+      <!-- ════ QUOTES ════ -->
+      <section class="sp" id="tab-widget">
+        <h2 class="pt">Quote Widget</h2>
+        <p class="pd">Add custom quotes to show on your new tab. Mix with built-in quotes or use yours exclusively.</p>
+        <div class="toggle-group mb16">
+          <div class="tgl-info">
+            <span class="tgl-label">Use custom quotes only</span>
+            <span class="tgl-hint">Hides the built-in quote pool</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="custom-only-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <h3 class="sub-heading">My Custom Quotes</h3>
+        <div class="quotes-editor" id="quotes-editor"></div>
+        <div class="add-quote-form">
+          <div class="fg">
+            <label class="fl">Quote Text</label>
+            <textarea class="fi fi-ta" id="new-quote-text" placeholder="Enter your quote..." rows="2"></textarea>
+          </div>
+          <div class="fg">
+            <label class="fl">Author</label>
+            <input type="text" class="fi" id="new-quote-author" placeholder="Author or 'Anonymous'" maxlength="50" />
+          </div>
+          <button class="btn-secondary" id="add-quote-btn">＋ Add Quote</button>
+        </div>
+        <div class="btn-row mt14">
+          <button class="btn-primary" id="save-quotes-btn">💾 Save Quotes</button>
+        </div>
+        <div class="smsg" id="quotes-msg"></div>
+      </section>
+
+      <!-- ════ QUICK LINKS ════ -->
+      <section class="sp" id="tab-links">
+        <h2 class="pt">Quick Links</h2>
+
+        <div class="mode-selector mb20">
+          <h3 class="sub-heading">Display Mode</h3>
+          <div class="mode-cards">
+            <label class="mode-card">
+              <input type="radio" name="links-mode" value="1" id="mode-1-radio" />
+              <div class="mc-body">
+                <div class="mc-icon">⊞</div>
+                <div class="mc-title">Mode 1 — Grid</div>
+                <div class="mc-desc">Unlimited links in an auto-fill glass grid.</div>
+              </div>
+            </label>
+            <label class="mode-card">
+              <input type="radio" name="links-mode" value="2" id="mode-2-radio" />
+              <div class="mc-body">
+                <div class="mc-icon">⊟</div>
+                <div class="mc-title">Mode 2 — Bento</div>
+                <div class="mc-desc">7 tiles with neon colored borders.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="toggle-group mb20">
+          <div class="tgl-info">
+            <span class="tgl-label">Open links in new tab</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="new-tab-toggle" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div id="mode1-editor-wrap">
+          <h3 class="sub-heading">Mode 1 Links <span class="sub-hint">(unlimited)</span></h3>
+          <div class="le" id="mode1-links-editor"></div>
+          <div class="btn-row mt8">
+            <button class="btn-secondary" id="add-link1-btn">＋ Add Link</button>
+            <button class="btn-primary"   id="save-links1-btn">💾 Save</button>
+          </div>
+          <div class="smsg" id="links1-msg"></div>
+        </div>
+
+        <div id="mode2-editor-wrap" style="display:none;margin-top:20px;">
+          <h3 class="sub-heading">Mode 2 Links <span class="sub-hint">(max 7 — fills bento tiles in order)</span></h3>
+          <div class="le" id="mode2-links-editor"></div>
+          <div class="btn-row mt8">
+            <button class="btn-primary" id="save-links2-btn">💾 Save Bento Links</button>
+          </div>
+          <div class="smsg" id="links2-msg"></div>
+        </div>
+      </section>
+
+      <!-- ════ NAV LINKS ════ -->
+      <section class="sp" id="tab-nav">
+        <h2 class="pt">Top Nav Links</h2>
+        <p class="pd">Links shown in the top navigation bar of your new tab.</p>
+        <div class="le" id="nav-editor"></div>
+        <div class="btn-row mt8">
+          <button class="btn-secondary" id="add-nav-btn">＋ Add</button>
+          <button class="btn-primary"   id="save-nav-btn">💾 Save</button>
+        </div>
+        <div class="smsg" id="nav-msg"></div>
+      </section>
+
+      <!-- ════ DISPLAY ════ -->
+      <section class="sp" id="tab-display">
+        <h2 class="pt">Display Settings</h2>
+        <p class="pd">Toggle visual elements on or off.</p>
+
+        <div class="toggle-group mb12">
+          <div class="tgl-info">
+            <span class="tgl-label">Show bottom ticker bar</span>
+            <span class="tgl-hint">"Developed by passionate developer Tayyab Khan"</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="ticker-toggle" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <button class="btn-primary" id="save-display-btn">💾 Save Display Settings</button>
+        <div class="smsg" id="display-msg"></div>
+      </section>
+
+      <!-- ════ ABOUT ════ -->
+      <section class="sp" id="tab-about">
+        <h2 class="pt">About</h2>
+        <div class="about-layout">
+
+          <!-- Left: CyberTab info box -->
+          <div class="about-cybertab-box">
+            <div class="about-logo">⬡</div>
+            <h3 class="about-name">CyberTab v3.0.0</h3>
+            <p class="about-desc">A cyberpunk-themed Chrome New Tab extension with animated wallpaper, live clock, quote widget, and fully customizable quick links — including a stunning 7-tile bento layout.</p>
+            <div class="about-tags">
+              <span class="tag">Manifest V3</span>
+              <span class="tag">No API Keys</span>
+              <span class="tag">Privacy First</span>
+              <span class="tag">Open Source</span>
+            </div>
+            <div class="about-help">
+              Need Help? Join our
+              <a href="https://discord.gg/7K3U9VgnK7" target="_blank" rel="noopener" class="disc-link">Discord</a>
+              server.
+            </div>
+            <div class="about-powered">Powered by <strong>Five River Solutions</strong></div>
+          </div>
+
+          <!-- Right: Developer cards -->
+          <div class="about-devs">
+            <h3 class="devs-heading">About Developers</h3>
+
+            <!-- Tayyab card -->
+            <div class="dev-card">
+              <div class="dev-text">
+                <div class="dev-name-badge">Tayyab Soban</div>
+                <p class="dev-bio">
+                  Just a vibe coder building whatever comes to mind. Diving deep into cybersecurity while juggling multiple projects. I automate things, break things, then fix them again. Discord is my favorite platform — it ends up integrated into almost everything I build.
+                </p>
+              </div>
+              <div class="dev-avatar-wrap">
+                <img src="../images/danger.png" alt="Tayyab" class="dev-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="dev-avatar-fallback" style="display:none;">T</div>
+              </div>
+            </div>
+
+            <!-- Faizan card -->
+            <div class="dev-card">
+              <div class="dev-text">
+                <div class="dev-name-badge" style="border-color:rgba(180,0,255,.5);color:var(--np);">Faizan</div>
+                <p class="dev-bio">
+                  Just another vibe coder who fell in love with building Discord bots. Interests sit between cybersecurity and AI — always tinkering with both. When not coding or breaking things, probably gaming. Discord remains my favorite platform and it shows in everything I create.
+                </p>
+              </div>
+              <div class="dev-avatar-wrap">
+                <img src="../images/mysterious.png" alt="Faizan" class="dev-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="dev-avatar-fallback" style="display:none;background:linear-gradient(135deg,rgba(180,0,255,.3),rgba(0,245,255,.2));">F</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/db.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
